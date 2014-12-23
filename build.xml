@@ -1,0 +1,48 @@
+<project name="Selenium" default="dist" basedir=".">
+<description>
+Selenium Simple Sample File
+</description>
+
+<!-- set global properties for this build -->
+<property name="main_class_name" value="Simple"/>
+<property name="src" location="src"/>
+<property name="test" location="test"/>
+<property name="build" location="bin"/>
+<property name="dist"  location="dist"/>
+<property name="lib"  location="libs"/>
+<property name="classpath" value="${lib}"/>
+
+<!-- Classpath for the project -->	
+    <path id="master-classpath">
+      <fileset dir="${classpath}">
+        <include name="**/*.jar"/>
+      </fileset>
+    </path>
+
+<path id="project.classpath">
+	<pathelement location="${build}" />
+	<pathelement location="${lib}" />
+</path>
+ 
+<target name="clean">
+	<delete dir="${build}"/>
+</target>
+
+<target name="init">
+	<!-- Create directories if needed -->
+	<mkdir dir="${build}"/>
+</target>
+ 
+<target name="compile" depends="init" description="compile the source " >
+	<!-- Compile the java code from ${src} into ${build} -->
+	<javac debug="true" srcdir="${src}" destdir="${build}" classpathref="project.classpath" includeantruntime="true">
+		<classpath refid="master-classpath"/>
+	</javac>
+</target>
+
+<target name="run">
+	<java classname="test.Simple" classpathref="project.classpath">
+		<classpath refid="master-classpath"/>
+	</java>
+</target>
+</project>
