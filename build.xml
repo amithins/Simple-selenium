@@ -41,6 +41,7 @@ Selenium Simple Sample File
 </target>
 
 <target name="run">
+	<!-- Run compiled class from ${build} -->
 	<java classname="test.Simple" classpathref="project.classpath">
 		<classpath refid="master-classpath"/>
 	</java>
